@@ -7,8 +7,8 @@ SPEED_OF_SOUND = 343.6
 
 freqs = [125,250,500,1000,2000,4000]
 
+# Quelle: https://sengpielaudio.com/calculator-RT60Coeff.htm
 mat_abs = {
-    "INIT": [0.9, 0.9, 0.9, 0.9, 0.9, 0.9],
     "floor: concrete": [0.01, 0.01, 0.015, 0.02, 0.02, 0.02],
     "floor: linoleum/vinyl tile on concrete": [0.02, 0.03, 0.03, 0.03, 0.03, 0.02],
     "floor: wood on joists": [0.15, 0.11, 0.10, 0.07, 0.06, 0.07],
@@ -51,7 +51,7 @@ def to_ref_coeff(abs):
     """
     return np.sqrt(1-abs) 
 
-def calc_t60(room_dim,wall_coeff,freq): #REF-Coeff
+def calc_t60(room_dim,wall_coeff,freq):
     """
     Berechnung der Nachhallzeit (t60)
     :return: Nachhallzeit
@@ -139,13 +139,13 @@ def create_LUTs(room_dim,wall_coeff,sound_pos,receiver_pos,N):
     Erhält die Dimensionen / Werte einer Koordinatenachse und erstellt zwei Lookup Table. 
     Der erste enthält die quadrierten Distanzen der Spiegelschallquellen zum Empfänger.
     Der zweite enthält die resultierendern Reflexionskoeffizienten.
-    Berechnung der Impulsantwort nach dem Ansatz von Allen und Berkley
     room_dim: Raumdimension einer Achse
     wall_coeff: Reflektionskoeffizienten der Wände einer Achse 
     sound_pos: Position der Schallquelle 
     receiver_pos: Position des Empfängers 
     N: Anzahl der Spiegelschallquellen der Achse
     """
+    # Angepasster Code auf Basis der Quelle: Stephen McGovern, Fast image method for impulse response calculations of box-shaped rooms
     dist_lookup = np.zeros(N*2+1) 
     coeff_lookup = np.zeros(N*2+1)
     
@@ -192,6 +192,8 @@ def ir_with_LUT(room_dim,wall_coeff,sound_pos,receiver_pos,t60,remove_sweeping_e
     t60: Nachhallzeit in s
     sweeping_echoes_off: true --> sweeping echoes werden durch Zufallsfaktor entfernt
     """
+
+    # Angepasster Code auf Basis der Quelle: Stephen McGovern, Fast image method for impulse response calculations of box-shaped rooms
 
     # Verschiebung des Raums von 0 -> Raumende zu zentriert um Ursprung
     room_dim = np.array(room_dim) / 2
