@@ -19,6 +19,10 @@ In [Windows-Anwendungen](Plugin/Windows_Anwendungen) befinden sich das Plugin un
 [`Impulse_Response_Sim.py`](Impulse_Response_Sim.py) enthält den gesamten Python Code. Um diesen Auszuführen müssen die benötigten Bibliotheken heruntergeladen werden. Mit Hilfe von pip kann der Befehl `pip install -r requirements.txt` ausgeführt werden um diese zu installieren.   
 Um die Parameter eines Raumes selbst zu definieren kann der Code individuell angepasst werden.
 
+## Sonstiges
+
+In [Simulations_Ergebnisse](Simulations_Ergebnisse) finden sich außerdem Ergebnisse der Simulation aus EASE. 
+In [Hörvergleich](Hörvergleich) befinden sich die Audio-Dateien des Hörvergleichs. Jeweils das trockene Signal und die mit den Impulsantworten gefalteten Signale.
 
 
 
